@@ -1,3 +1,14 @@
+---@diagnostic disable: lowercase-global, undefined-global, undefined-field
+
+
+
+--[[             |
+'                |   Last changes:     
+FluentPlus 1.2   |   01.01 - fixed this file and mobile support, added a "GUI dragging cooldown".
+dsc.gg/hydrahub  |   31.12 - fixed all themes, more info in discord.
+'                |   30.12 - added themes.
+]]--             |
+
 --- FLUENT PLUS SETTINGS ---
 local Show_Button = false -- Shows the button for toggle fluent ui manually. If "false", works only on mobile, if "true", works everytime.
 local Button_Icon = "rbxassetid://95235358807092" -- Icon of the button for toggle fluent ui
@@ -16,20 +27,14 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Mobile
-if RunService:IsStudio() then
-	Mobile = false
-else
-	Mobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) ~= nil
-end
-
 if Show_Button then
 	Mobile = true
 end
 
-local fischbypass
-
-if game.GameId == 5750914919 then
-	fischbypass = true
+if RunService:IsStudio() then
+	Mobile = false
+else
+	Mobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) ~= nil
 end
 
 local RenderStepped = RunService.RenderStepped
@@ -54,8 +59,7 @@ local Themes = {
 		"Emerald",
 		"Sapphire",
 		"Cloud",
-		"Grape",
-		"Bloody"
+		"Grape"
 	},
 	Dark = {
 		Name = "Dark",
@@ -390,7 +394,7 @@ local Themes = {
 		AcrylicMain = Color3.fromRGB(20, 20, 20),
 		AcrylicBorder = Color3.fromRGB(83, 83, 130),
 		AcrylicGradient = ColorSequence.new(Color3.fromRGB(1, 1, 39), Color3.fromRGB(6, 6, 54)),
-		AcrylicNoise = 0.96,
+		AcrylicNoise = 0.92,
 		TitleBarLine = Color3.fromRGB(77, 75, 126),
 		Tab = Color3.fromRGB(126, 127, 180),
 		Element = Color3.fromRGB(111, 108, 160),
@@ -576,15 +580,15 @@ local Themes = {
 	Sapphire = {
 		Name = "Sapphire",
 		Accent = Color3.fromRGB(0, 105, 255),
-		AcrylicMain = Color3.fromRGB(24, 30, 85),
+		AcrylicMain = Color3.fromRGB(10, 15, 35),
 		AcrylicBorder = Color3.fromRGB(25, 80, 150),
-		AcrylicGradient = ColorSequence.new(Color3.fromRGB(13, 33, 94), Color3.fromRGB(21, 44, 127)),
+		AcrylicGradient = ColorSequence.new(Color3.fromRGB(10, 25, 70), Color3.fromRGB(15, 30, 90)),
 		AcrylicNoise = 0.88,
 		TitleBarLine = Color3.fromRGB(50, 120, 200),
 		Tab = Color3.fromRGB(60, 140, 220),
-		Element = Color3.fromRGB(42, 98, 176),
-		ElementBorder = Color3.fromRGB(23, 66, 113),
-		InElementBorder = Color3.fromRGB(27, 65, 126),
+		Element = Color3.fromRGB(45, 130, 190),
+		ElementBorder = Color3.fromRGB(30, 90, 140),
+		InElementBorder = Color3.fromRGB(40, 100, 160),
 		ElementTransparency = 0.85,
 		ToggleSlider = Color3.fromRGB(50, 140, 210),
 		ToggleToggled = Color3.fromRGB(20, 50, 80),
@@ -607,7 +611,7 @@ local Themes = {
 		DialogInput = Color3.fromRGB(30, 90, 140),
 		DialogInputLine = Color3.fromRGB(55, 150, 230),
 		Text = Color3.fromRGB(240, 240, 240),
-		SubText = Color3.fromRGB(170, 170, 170),
+		SubText = Color3.fromRGB(180, 180, 255),
 		Hover = Color3.fromRGB(50, 140, 210),
 		HoverChange = 0.05
 	},
@@ -686,48 +690,10 @@ local Themes = {
 		Hover = Color3.fromRGB(40, 40, 40),
 		HoverChange = 0.04
 	},
-	Bloody = {
-		Name = "Bloody",
-		Accent = Color3.fromRGB(144, 0, 0),
-		AcrylicMain = Color3.fromRGB(61, 0, 0),
-		AcrylicBorder = Color3.fromRGB(86, 0, 0),
-		AcrylicGradient = ColorSequence.new(Color3.fromRGB(90, 0, 0), Color3.fromRGB(100, 0, 0)),
-		AcrylicNoise = 0.92,
-		TitleBarLine = Color3.fromRGB(126, 0, 0),
-		Tab = Color3.fromRGB(134, 0, 0),
-		Element = Color3.fromRGB(156, 0, 0),
-		ElementBorder = Color3.fromRGB(91, 0, 0),
-		InElementBorder = Color3.fromRGB(106, 0, 0),
-		ElementTransparency = 0.86,
-		ToggleSlider = Color3.fromRGB(130, 5, 5),
-		ToggleToggled = Color3.fromRGB(66, 0, 0),
-		SliderRail = Color3.fromRGB(150, 30, 30),
-		DropdownFrame = Color3.fromRGB(150, 30, 30),
-		DropdownHolder = Color3.fromRGB(79, 0, 0),
-		DropdownBorder = Color3.fromRGB(116, 0, 0),
-		DropdownOption = Color3.fromRGB(150, 30, 30),
-		Keybind = Color3.fromRGB(150, 30, 30),
-		Input = Color3.fromRGB(150, 30, 30),
-		InputFocused = Color3.fromRGB(40, 10, 10),
-		InputIndicator = Color3.fromRGB(113, 1, 1),
-		Dialog = Color3.fromRGB(85, 0, 1),
-		DialogHolder = Color3.fromRGB(77, 0, 8),
-		DialogHolderLine = Color3.fromRGB(88, 4, 4),
-		DialogButton = Color3.fromRGB(115, 14, 21),
-		DialogButtonBorder = Color3.fromRGB(83, 0, 1),
-		DialogBorder = Color3.fromRGB(43, 4, 5),
-		DialogInput = Color3.fromRGB(108, 20, 21),
-		DialogInputLine = Color3.fromRGB(91, 1, 1),
-		Text = Color3.fromRGB(240, 240, 240),
-		SubText = Color3.fromRGB(131, 131, 131),
-		Hover = Color3.fromRGB(181, 0, 0),
-		HoverChange = 0.04
-	}
-
 }
 
 local Library = {
-	Version = "1.2.2",
+	Version = "1.2",
 
 	OpenFrames = {},
 	Options = {},
@@ -2010,14 +1976,12 @@ Components.Tab = (function()
 			Type = "Tab",
 		}
 
-		if not fischbypass then 
-			if Library:GetIcon(Icon) then
-				Icon = Library:GetIcon(Icon)
-			end
+		if Library:GetIcon(Icon) then
+			Icon = Library:GetIcon(Icon)
+		end
 
-			if Icon == "" or nil then
-				Icon = nil
-			end
+		if Icon == "" or nil then
+			Icon = nil
 		end
 
 		Tab.Frame = New("TextButton", {
@@ -2033,7 +1997,7 @@ Components.Tab = (function()
 			}),
 			New("TextLabel", {
 				AnchorPoint = Vector2.new(0, 0.5),
-				Position = not fischbypass and Icon and UDim2.new(0, 30, 0.5, 0) or UDim2.new(0, 12, 0.5, 0),
+				Position = Icon and UDim2.new(0, 30, 0.5, 0) or UDim2.new(0, 12, 0.5, 0),
 				Text = Title,
 				RichText = true,
 				TextColor3 = Color3.fromRGB(255, 255, 255),
@@ -3195,8 +3159,8 @@ Components.Window = (function()
 					})
 				else 
 					Library:Notify({
-						Title = "Interface",
-						Content = "Tap to the button to toggle the interface.",
+						Title = "Interface (Mobile)",
+						Content = "Tap to the button with a Moon to toggle the interface.",
 						Duration = 6
 					})
 				end
@@ -4913,7 +4877,7 @@ ElementsTable.Input = (function()
 			Library:SafeCallback(Input.Callback, Input.Value)
 			Library:SafeCallback(Input.Changed, Input.Value)
 		end
-		
+
 		if Input.Finished then
 			AddSignal(Box.FocusLost, function(enter)
 				if not enter then
@@ -5921,28 +5885,26 @@ local SaveManager = {} do
 		return true
 	end
 
-	if not RunService:IsStudio() then
-		function SaveManager:Load(name)
-			if (not name) then
-				return false, "no config file is selected"
-			end
-
-			local file = self.Folder .. "/" .. name .. ".json"
-			if not isfile(file) then return false, "Create Config Save File" end
-
-			local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
-			if not success then return false, "decode error" end
-
-			for _, option in next, decoded.objects do
-				if self.Parser[option.type] and not self.Ignore[option.idx] then
-					task.spawn(function() self.Parser[option.type].Load(option.idx, option) end) -- task.spawn() so the config loading wont get stuck.
-				end
-			end
-
-			Fluent.SettingLoaded = true
-
-			return true, decoded
+	function SaveManager:Load(name)
+		if (not name) then
+			return false, "no config file is selected"
 		end
+
+		local file = self.Folder .. "/" .. name .. ".json"
+		if not isfile(file) then return false, "Create Config Save File" end
+
+		local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
+		if not success then return false, "decode error" end
+
+		for _, option in next, decoded.objects do
+			if self.Parser[option.type] and not self.Ignore[option.idx] then
+				task.spawn(function() self.Parser[option.type].Load(option.idx, option) end) -- task.spawn() so the config loading wont get stuck.
+			end
+		end
+
+		Fluent.SettingLoaded = true
+
+		return true, decoded
 	end
 
 	function SaveManager:IgnoreThemeSettings()
@@ -5998,28 +5960,26 @@ local SaveManager = {} do
 		self.Options = library.Options
 	end
 
-	if not RunService:IsStudio() then
-		function SaveManager:LoadAutoloadConfig()
-			if isfile(self.Folder .. "/autoload.txt") then
-				local name = readfile(self.Folder .. "/autoload.txt")
+	function SaveManager:LoadAutoloadConfig()
+		if isfile(self.Folder .. "/autoload.txt") then
+			local name = readfile(self.Folder .. "/autoload.txt")
 
-				local success, err = self:Load(name)
-				if not success then
-					return self.Library:Notify({
-						Title = "Interface",
-						Content = "Config loader",
-						SubContent = "Failed to load autoload config: " .. err,
-						Duration = 7
-					})
-				end
-
-				self.Library:Notify({
+			local success, err = self:Load(name)
+			if not success then
+				return self.Library:Notify({
 					Title = "Interface",
 					Content = "Config loader",
-					SubContent = string.format("Auto loaded config %q", name),
+					SubContent = "Failed to load autoload config: " .. err,
 					Duration = 7
 				})
 			end
+
+			self.Library:Notify({
+				Title = "Interface",
+				Content = "Config loader",
+				SubContent = string.format("Auto loaded config %q", name),
+				Duration = 7
+			})
 		end
 	end
 
@@ -6188,8 +6148,7 @@ local InterfaceManager = {} do
 		local path = self.Folder .. "/options.json"
 		if isfile(path) then
 			local data = readfile(path)
-
-			if not RunService:IsStudio() then local success, decoded = pcall(httpService.JSONDecode, httpService, data) end
+			local success, decoded = pcall(httpService.JSONDecode, httpService, data)
 
 			if success then
 				for i, v in next, decoded do
@@ -6245,6 +6204,16 @@ local InterfaceManager = {} do
 			end
 		})
 
+		section:AddSlider("CooldownDragging", {
+			Title = "GUI dragging cooldown.",
+			Default = 5,
+			Min = 0,
+			Max = 50,
+			Rounding = 1,
+			Callback = function(Value)
+				CDDrag = Value
+			end,
+		})
 
 		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Library.MinimizeKey.Name or Settings.MenuKeybind })
 		MenuKeybind:OnChanged(function()
@@ -6333,7 +6302,6 @@ if getgenv then
 else
 	Fluent = Library
 end
-
 local MinimizeButton = New("TextButton", {
 	BackgroundTransparency = 1,
 	Size = UDim2.new(1, 0, 1, 0),
@@ -6362,7 +6330,7 @@ local Minimizer
 if Mobile then
 	Minimizer = New("Frame", {
 		Parent = GUI,
-		Size = UDim2.new(0.08, 1, 0.1642, 1),
+		Size = UDim2.new(0.06, 0, 0.15, 0),
 		Position = UDim2.new(0.45, 0, 0.025, 0),
 		BackgroundTransparency = 1,
 		ZIndex = 999999999,
@@ -6387,7 +6355,6 @@ else
 		Position = UDim2.new(0.45, 0, 0.025, 0),
 		BackgroundTransparency = 1,
 		ZIndex = 999999999,
-		Visible = false
 	},
 	{
 		New("Frame", {
@@ -6487,6 +6454,321 @@ AddSignal(MinimizeButton.MouseButton1Click, function()
 	Library.Window:Minimize()
 end)
 
-task.wait(0.1)
+--
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local httpService = game:GetService("HttpService")
+
+local InterfaceManager = {} do
+	InterfaceManager.Folder = "FluentSettings"
+	InterfaceManager.Settings = {
+		Theme = "Dark",
+		Acrylic = true,
+		Transparency = true,
+		MenuKeybind = "LeftControl"
+	}
+
+	function InterfaceManager:SetFolder(folder)
+		self.Folder = folder;
+		self:BuildFolderTree()
+	end
+
+	function InterfaceManager:SetLibrary(library)
+		self.Library = library
+	end
+
+	function InterfaceManager:BuildFolderTree()
+		local paths = {}
+
+		local parts = self.Folder:split("/")
+		for idx = 1, #parts do
+			paths[#paths + 1] = table.concat(parts, "/", 1, idx)
+		end
+
+		table.insert(paths, self.Folder)
+		table.insert(paths, self.Folder .. "/settings")
+
+		for i = 1, #paths do
+			local str = paths[i]
+			if not isfolder(str) then
+				makefolder(str)
+			end
+		end
+	end
+
+	function InterfaceManager:SaveSettings()
+		writefile(self.Folder .. "/options.json", httpService:JSONEncode(InterfaceManager.Settings))
+	end
+
+	function InterfaceManager:LoadSettings()
+		local path = self.Folder .. "/options.json"
+		if isfile(path) then
+			local data = readfile(path)
+			local success, decoded = nil
+
+			if success then
+				for i, v in next, decoded do
+					InterfaceManager.Settings[i] = v
+				end
+			end
+		end
+	end
+
+	function InterfaceManager:BuildInterfaceSection(tab)
+		assert(self.Library, "Must set InterfaceManager.Library")
+		local Library = self.Library
+		local Settings = InterfaceManager.Settings
+
+		InterfaceManager:LoadSettings()
+
+		local section = tab:AddSection("Interface")
+
+		local InterfaceTheme = section:AddDropdown("InterfaceTheme", {
+			Title = "Theme",
+			Description = "Changes the interface theme.",
+			Values = Library.Themes,
+			Default = Settings.Theme,
+			Callback = function(Value)
+				Library:SetTheme(Value)
+				Settings.Theme = Value
+				InterfaceManager:SaveSettings()
+			end
+		})
+
+		InterfaceTheme:SetValue(Settings.Theme)
+
+		if Library.UseAcrylic then
+			section:AddToggle("AcrylicToggle", {
+				Title = "Acrylic",
+				Description = "The blurred background requires graphic quality 8+",
+				Default = Settings.Acrylic,
+				Callback = function(Value)
+					Library:ToggleAcrylic(Value)
+					Settings.Acrylic = Value
+					InterfaceManager:SaveSettings()
+				end
+			})
+		end
+
+		section:AddToggle("TransparentToggle", {
+			Title = "Transparency",
+			Description = "Makes the interface transparent.",
+			Default = Settings.Transparency,
+			Callback = function(Value)
+				Library:ToggleTransparency(Value)
+				Settings.Transparency = Value
+				InterfaceManager:SaveSettings()
+			end
+		})
+
+		section:AddSlider("CooldownDragging", {
+			Title = "GUI dragging cooldown",
+			Default = 1,
+			Min = 0,
+			Max = 3,
+			Rounding = 1.1,
+			Callback = function(Value)
+				_G.CDDrag = Value
+			end
+		})
+
+		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Settings.MenuKeybind })
+		MenuKeybind:OnChanged(function()
+			Settings.MenuKeybind = MenuKeybind.Value
+			InterfaceManager:SaveSettings()
+		end)
+		Library.MinimizeKeybind = MenuKeybind
+	end
+end
+
+task.wait(0.1)
 return Library, SaveManager, InterfaceManager, Mobile
