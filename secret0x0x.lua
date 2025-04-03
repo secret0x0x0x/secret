@@ -98,9 +98,9 @@ local Themes = {
 		DialogInputLine = Color3.fromRGB(255, 255, 255), -- White input line in dialog
 		Text = Color3.fromRGB(255, 255, 255), -- White text for high contrast
 		SubText = Color3.fromRGB(180, 180, 180), -- Light gray for subtext
-		Hover = Color3.fromRGB(30, 0, 0), -- Hover effect with dark red
-		HoverChange = 0.04 -- Slight hover change effect
-	},	    
+		Hover = Color3.fromRGB(50, 0, 0), -- Hover effect with medium red for better contrast
+		HoverChange = 0.04 -- Slight hover change effect for smooth transitions
+	},		
 	VYXON1 = {
 		Name = "VYXON1",
 		Accent = Color3.fromRGB(255, 0, 0), -- Bold red for contrast
