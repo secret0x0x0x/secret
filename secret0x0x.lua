@@ -3230,17 +3230,8 @@ Components.Window = (function()
 			if not MinimizeNotif then
 				MinimizeNotif = true
 				local Key = Library.MinimizeKeybind and Library.MinimizeKeybind.Value or Library.MinimizeKey.Name
-				if not Mobile then Library:Notify({
-					Title = "Interface",
-					Content = "Press " .. Key .. " to toggle the interface.",
-					Duration = 6
-					})
-				else 
-					Library:Notify({
-						Title = "Interface (Mobile)",
-						Content = "Tap to the button with a Moon to toggle the interface.",
-						Duration = 6
-					})
+				if not Mobile then 
+					return
 				end
 			end
 			if not RunService:IsStudio() then
@@ -6393,7 +6384,7 @@ local MinimizeButton = New("TextButton", {
 	}),
 	New("ImageLabel", {
 		Image = Mobile and Button_Icon or "rbxassetid://10734897102" or "",
-		Size = UDim2.new(1, 0, 1, 0),
+		Size = UDim2.new(1.25, 0, 1.25, 0),
 		BackgroundTransparency = 1,
 	}, {
 		New("UIAspectRatioConstraint", {
