@@ -4017,34 +4017,34 @@ ElementsTable.Dropdown = (function()
 	return Element
 end)()
 ElementsTable.Paragraph = (function()
-	local Paragraph = {}
-	Paragraph.__index = Paragraph
-	Paragraph.__type = "Paragraph"
+    local Paragraph = {}
+    Paragraph.__index = Paragraph
+    Paragraph.__type = "Paragraph"
 
-	function Paragraph:New(Config)
-		assert(Config.Title, "Paragraph - Missing Title")
-		Config.Content = Config.Content or ""
+    function Paragraph:New(Config)
+        assert(Config.Title, "Paragraph - Missing Title")
+        Config.Content = Config.Content or ""
 
-		local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
-		Self.Frame.BackgroundTransparency = 0.92
-		Self.Border.Transparency = 0.6
+        local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
+        Self.Frame.BackgroundTransparency = 0.92
+        Self.Border.Transparency = 0.6
 
-		Self.SetTitle = Self.SetTitle
-		Self.SetDesc = Self.SetDesc
-		Self.Visible = Self.Visible
-		Self.Elements = Self
+        Self.SetTitle = Self.SetTitle
+        Self.SetDesc = Self.SetDesc
+        Self.Visible = Self.Visible
+        Self.Elements = Self
 
-		-- Added Paragraph Set
-		function Self:SetValue(Value)
-			Self:SetDesc(tostring(Config.Content))
-		end
+        -- Added Paragraph Set
+        function Self:SetValue(Value)
+            -- Use the Value passed into SetValue to update the content
+            Self:SetDesc(tostring(Value))  -- SetDesc should be updating the content with the new value
+        end
 
-		return Self
-	end
+        return Self
+    end
 
-	return Paragraph
+    return Paragraph
 end)()
-
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
