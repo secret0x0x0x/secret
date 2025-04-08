@@ -4021,6 +4021,7 @@ ElementsTable.Paragraph = (function()
     Paragraph.__index = Paragraph
     Paragraph.__type = "Paragraph"
 
+    -- Create new paragraph instance
     function Paragraph:New(Config)
         assert(Config.Title, "Paragraph - Missing Title")
         Config.Content = Config.Content or ""
@@ -4032,12 +4033,12 @@ ElementsTable.Paragraph = (function()
         -- Set functions for Paragraph
         Self.SetTitle = function(newTitle)
             Self.Title = newTitle
-            -- You can also update the UI or do additional work here
+            -- You can also update the UI or do additional work here if needed
         end
 
         Self.SetDesc = function(newDesc)
             Self.Content = newDesc
-            -- Update the paragraph display logic here
+            -- Update the paragraph display logic here if needed
         end
 
         Self.Visible = true
@@ -4062,7 +4063,6 @@ ElementsTable.Paragraph = (function()
 
     return Paragraph
 end)()
-
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
