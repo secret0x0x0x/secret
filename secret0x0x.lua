@@ -4017,70 +4017,32 @@ ElementsTable.Dropdown = (function()
 	return Element
 end)()
 ElementsTable.Paragraph = (function()
-    local Paragraph = {}
-    Paragraph.__index = Paragraph
-    Paragraph.__type = "Paragraph"
+	local Paragraph = {}
+	Paragraph.__index = Paragraph
+	Paragraph.__type = "Paragraph"
 
-    -- Create a new Paragraph element
-    function Paragraph:New(Config)
-        assert(Config.Title, "Paragraph - Missing Title")
-        Config.Content = Config.Content or ""
+	function Paragraph:New(Config)
+		assert(Config.Title, "Paragraph - Missing Title")
+		Config.Content = Config.Content or ""
 
-        local self = setmetatable({}, Paragraph)
+		local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
+		Self.Frame.BackgroundTransparency = 0.92
+		Self.Border.Transparency = 0.6
 
-        -- Create the element using the provided configuration
-        local element = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
+		Self.SetTitle = Self.SetTitle
+		Self.SetDesc = Self.SetDesc
+		Self.Visible = Self.Visible
+		Self.Elements = Self
 
-        -- Customize the appearance
-        element.Frame.BackgroundTransparency = 0.92
-        element.Border.Transparency = 0.6
+		-- Added Paragraph Set
+		function Self:SetValue(Value)
+			Self:SetDesc(tostring(Value))
+		end
 
-        -- Define method to set the title
-        function element:SetTitle(newTitle)
-            if self.Title then
-                self.Title.Text = tostring(newTitle)
-            end
-        end
+		return Self
+	end
 
-        -- Define method to set the description
-        function element:SetDesc(newDesc)
-            if self.Description then
-                self.Description.Text = tostring(newDesc)
-            end
-        end
-
-        -- Define method to set the value (updating the description)
-        function element:SetValue(value)
-            self:SetDesc(tostring(value))  -- Set the description to the provided value
-        end
-
-        -- Define method to get the current value of the description
-        function element:GetValue()
-            return self.Description and self.Description.Text or ""
-        end
-
-        -- Define method to destroy the element
-        function element:Destroy()
-            if self.Frame then
-                self.Frame:Destroy()
-            end
-            self.Visible = false
-            self.Elements = nil
-        end
-
-        -- Store element references in the Paragraph object
-        for k, v in pairs(element) do
-            self[k] = v
-        end
-
-        -- Make the element visible and store the reference
-        self.Elements = self
-        self.Visible = true
-
-        return self
-    end
-
-    return Paragraph
+	return Paragraph
 end)()
 
 ElementsTable.Slider = (function()
