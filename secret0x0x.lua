@@ -7,6 +7,8 @@
 FluentPlus 1.2   |   01.01 - fixed this file and mobile support, added a "GUI dragging cooldown".
 dsc.gg/hydrahub  |   31.12 - fixed all themes, more info in discord.
 '                |   30.12 - added themes.
+
+Further Updates made by Vyxon!
 ]]--             |
 
 --- FLUENT PLUS SETTINGS ---
@@ -4025,20 +4027,26 @@ ElementsTable.Paragraph = (function()
 		assert(Config.Title, "Paragraph - Missing Title")
 		Config.Content = Config.Content or ""
 
-		local Paragraph = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
-		Paragraph.Frame.BackgroundTransparency = 0.92
-		Paragraph.Border.Transparency = 0.6
+		local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
+		Self.Frame.BackgroundTransparency = 0.92
+		Self.Border.Transparency = 0.6
 
-		Paragraph.SetTitle = Paragraph.SetTitle
-		Paragraph.SetDesc = Paragraph.SetDesc
-		Paragraph.Visible = Paragraph.Visible
-		Paragraph.Elements = Paragraph
+		Self.SetTitle = Self.SetTitle
+		Self.SetDesc = Self.SetDesc
+		Self.Visible = Self.Visible
+		Self.Elements = Self
 
-		return Paragraph
+		-- Added Paragraph Set
+		function Self:SetValue(Value)
+			Self:SetDesc(tostring(Value))
+		end
+
+		return Self
 	end
 
 	return Paragraph
 end)()
+
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
