@@ -4029,33 +4029,39 @@ ElementsTable.Paragraph = (function()
 		Self.Frame.BackgroundTransparency = 0.92
 		Self.Border.Transparency = 0.6
 
-		-- Implement SetTitle to change the title text
+		-- Change title text
 		function Self:SetTitle(newTitle)
 			if Self.Title then
 				Self.Title.Text = tostring(newTitle)
 			end
 		end
 
-		-- Implement SetDesc to change the description/content text
+		-- Change description/content
 		function Self:SetDesc(newDesc)
 			if Self.Description then
 				Self.Description.Text = tostring(newDesc)
 			end
 		end
 
-		-- Implement SetValue as an alias for SetDesc
-		function Self:SetValue(Value)
-			Self:SetDesc(tostring(Value))
+		-- Alias for SetDesc
+		function Self:SetValue(value)
+			Self:SetDesc(tostring(value))
 		end
 
-		Self.Visible = Self.Visible
+		-- Optional: Retrieve current value
+		function Self:GetValue()
+			return Self.Description and Self.Description.Text or ""
+		end
+
 		Self.Elements = Self
+		Self.Visible = true -- explicit visibility
 
 		return Self
 	end
 
 	return Paragraph
 end)()
+
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
