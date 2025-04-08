@@ -4036,7 +4036,7 @@ ElementsTable.Paragraph = (function()
 
 		-- Added Paragraph Set
 		function Self:SetValue(Value)
-			Self:SetDesc(tostring(Value))
+			Self:SetDesc(tostring(Config.Content))
 		end
 
 		return Self
