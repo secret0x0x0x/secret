@@ -7,8 +7,6 @@
 FluentPlus 1.2   |   01.01 - fixed this file and mobile support, added a "GUI dragging cooldown".
 dsc.gg/hydrahub  |   31.12 - fixed all themes, more info in discord.
 '                |   30.12 - added themes.
-
-Further Updates made by Vyxon!
 ]]--             |
 
 --- FLUENT PLUS SETTINGS ---
@@ -4031,22 +4029,33 @@ ElementsTable.Paragraph = (function()
 		Self.Frame.BackgroundTransparency = 0.92
 		Self.Border.Transparency = 0.6
 
-		Self.SetTitle = Self.SetTitle
-		Self.SetDesc = Self.SetDesc
-		Self.Visible = Self.Visible
-		Self.Elements = Self
+		-- Implement SetTitle to change the title text
+		function Self:SetTitle(newTitle)
+			if Self.Title then
+				Self.Title.Text = tostring(newTitle)
+			end
+		end
 
-		-- Added Paragraph Set
+		-- Implement SetDesc to change the description/content text
+		function Self:SetDesc(newDesc)
+			if Self.Description then
+				Self.Description.Text = tostring(newDesc)
+			end
+		end
+
+		-- Implement SetValue as an alias for SetDesc
 		function Self:SetValue(Value)
 			Self:SetDesc(tostring(Value))
 		end
+
+		Self.Visible = Self.Visible
+		Self.Elements = Self
 
 		return Self
 	end
 
 	return Paragraph
 end)()
-
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
