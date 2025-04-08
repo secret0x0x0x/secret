@@ -4029,9 +4029,18 @@ ElementsTable.Paragraph = (function()
         Self.Frame.BackgroundTransparency = 0.92
         Self.Border.Transparency = 0.6
 
-        Self.SetTitle = Self.SetTitle
-        Self.SetDesc = Self.SetDesc
-        Self.Visible = Self.Visible
+        -- Set functions for Paragraph
+        Self.SetTitle = function(newTitle)
+            Self.Title = newTitle
+            -- You can also update the UI or do additional work here
+        end
+
+        Self.SetDesc = function(newDesc)
+            Self.Content = newDesc
+            -- Update the paragraph display logic here
+        end
+
+        Self.Visible = true
         Self.Elements = Self
 
         -- Added Paragraph Set
@@ -4040,11 +4049,20 @@ ElementsTable.Paragraph = (function()
             Self:SetDesc(tostring(Value))  -- SetDesc should be updating the content with the new value
         end
 
+        -- OnChanged event-like functionality
+        Self.OnChanged = function(callback)
+            -- Placeholder for event listener (you can trigger this in your game logic when data changes)
+            local function triggerChange(newValue)
+                callback(newValue)  -- Call the callback with the updated value
+            end
+        end
+
         return Self
     end
 
     return Paragraph
 end)()
+
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
