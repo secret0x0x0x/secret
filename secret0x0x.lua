@@ -4017,52 +4017,29 @@ ElementsTable.Dropdown = (function()
 	return Element
 end)()
 ElementsTable.Paragraph = (function()
-    local Paragraph = {}
-    Paragraph.__index = Paragraph
-    Paragraph.__type = "Paragraph"
+	local Paragraph = {}
+	Paragraph.__index = Paragraph
+	Paragraph.__type = "Paragraph"
 
-    -- Create new paragraph instance
-    function Paragraph:New(Config)
-        assert(Config.Title, "Paragraph - Missing Title")
-        Config.Content = Config.Content or ""
+	function Paragraph:New(Config)
+		assert(Config.Title, "Paragraph - Missing Title")
+		Config.Content = Config.Content or ""
 
-        local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
-        Self.Frame.BackgroundTransparency = 0.92
-        Self.Border.Transparency = 0.6
+		local Self = Components.Element(Config.Title, Config.Content, Paragraph.Container, false, Config)
+		Self.Frame.BackgroundTransparency = 0.92
+		Self.Border.Transparency = 0.6
 
-        -- Set functions for Paragraph
-        Self.SetTitle = function(newTitle)
-            Self.Title = newTitle
-            -- You can also update the UI or do additional work here if needed
-        end
+		Self.SetTitle = Self.SetTitle
+		Self.SetDesc = Self.SetDesc
+		Self.Visible = Self.Visible
+		Self.Elements = Self
 
-        Self.SetDesc = function(newDesc)
-            Self.Content = newDesc
-            -- Update the paragraph display logic here if needed
-        end
+		return Self
+	end
 
-        Self.Visible = true
-        Self.Elements = Self
-
-        -- Added Paragraph Set
-        function Self:SetValue(Value)
-            -- Use the Value passed into SetValue to update the content
-            Self:SetDesc(tostring(Value))  -- SetDesc should be updating the content with the new value
-        end
-
-        -- OnChanged event-like functionality
-        Self.OnChanged = function(callback)
-            -- Placeholder for event listener (you can trigger this in your game logic when data changes)
-            local function triggerChange(newValue)
-                callback(newValue)  -- Call the callback with the updated value
-            end
-        end
-
-        return Self
-    end
-
-    return Paragraph
+	return Paragraph
 end)()
+
 ElementsTable.Slider = (function()
 	local Element = {}
 	Element.__index = Element
